@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:urun_katalog_projesi/features/login/presentation/pages/login_page.dart';
-import 'package:urun_katalog_projesi/gen/assets.gen.dart';
-import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 
-void main() {
-  runApp(const MyApp());
+class MyApp extends StatefulWidget {
+  MyApp._internal(); // private named constractor
+
+  static final MyApp instance =
+      MyApp._internal(); // single instance ya da singleton
+
+  int appState = 0;
+
+  factory MyApp() => instance;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -25,11 +30,7 @@ class MyApp extends StatelessWidget {
             // You can use the library anywhere in the app even in theme
             theme: ThemeData(
               primarySwatch: Colors.blue,
-              textTheme: Typography.englishLike2018.apply(
-                  fontSizeFactor: 1.sp, bodyColor: ColorManager.textColor),
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-
-              // useMaterial3: true,
+              textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
             ),
             home: child,
           );
