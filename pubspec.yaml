@@ -35,9 +35,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.7.0
   flutter_svg: ^2.0.4
   auto_route: ^6.0.5
   hooks_riverpod: ^2.3.1
+
+dependency_overrides:
+  analyzer: ^5.10.0
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +55,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_gen_runner: ^5.2.0
   build_runner: ^2.4.1
-  auto_route_generator: ^6.0.3
-  custom_lint:
+  auto_route_generator: ^6.0.1
+  custom_lint: ^0.3.2
   riverpod_lint: ^1.1.5
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
