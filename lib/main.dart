@@ -26,13 +26,13 @@ class MyApp extends StatelessWidget {
             // You can use the library anywhere in the app even in theme
             theme: ThemeData(
               elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ColorManager.orangeButtonColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-      ),
-    ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.orangeButtonColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
               primarySwatch: Colors.blue,
               textTheme: Typography.englishLike2018.apply(
                   fontSizeFactor: 1.sp, bodyColor: ColorManager.textColor),
@@ -43,6 +43,6 @@ class MyApp extends StatelessWidget {
             home: child,
           );
         },
-        child: const SplashPage());
+        child: const LoginPage());
   }
 }

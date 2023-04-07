@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
+import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/components/font_manager.dart';
 import 'package:urun_katalog_projesi/product/components/reuseable_widgets.dart';
 
@@ -16,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    bool? isChecked = false;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -92,8 +94,32 @@ class _LoginPageState extends State<LoginPage> {
                     '···········', true, true, _passwordTextController),
               ),
               SizedBox(
-                height: 12.h,
+                height: 5.h,
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Row(
+                  children: [
+                    Checkbox(
+                        value: isChecked,
+                        activeColor: Colors.amber,
+                        hoverColor: ColorManager.textAndButtonPurple,
+                        checkColor: Colors.amber,
+                        focusColor: ColorManager.textAndButtonPurple,
+                        onChanged: (newBool) {
+                          setState(() {
+                            isChecked = newBool;
+                          });
+                        }),
+                    Text(
+                      'Remember me',
+                      style: TextStyle(
+                          color: ColorManager.textAndButtonPurple,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
+              )
             ],
           )),
         ),

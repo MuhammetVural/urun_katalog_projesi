@@ -14,35 +14,36 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: ColorManager.splash,
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SizedBox(
-            width: 200.w,
-            height: 130.h,
-            child: Image.asset(Assets.images.logo2x.path),),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              width: 200.w,
+              height: 130.h,
+              child: Image.asset(Assets.images.logo2x.path),
+            ),
             Column(
               children: [
                 Container(
                   width: 350.w,
                   height: 60.h,
-                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
-                  child: ElevatedButton(onPressed: (){}, child: Text('Login')),
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: ElevatedButton(onPressed: () {}, child: Text('Login')),
                 ),
                 Container(
-              width: 350.w,
-              height: 60.h,
-              padding:  EdgeInsets.symmetric(horizontal: 20.h),
-              child: TextButton(onPressed: (){}, child: Text('Skip')),
-            ),
+                  width: 350.w,
+                  height: 60.h,
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: TextButton(onPressed: () {}, child: Text('Skip')),
+                ),
               ],
             ),
-        ],
-          ),
+          ],
+        ),
       ),
     );
   }
