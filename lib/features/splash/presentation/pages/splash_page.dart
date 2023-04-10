@@ -1,9 +1,11 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 
 import '../../../../gen/assets.gen.dart';
 
+@RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
