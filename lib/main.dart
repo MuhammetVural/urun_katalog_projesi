@@ -4,7 +4,9 @@ import 'package:urun_katalog_projesi/features/login/presentation/pages/login_pag
 import 'package:urun_katalog_projesi/features/splash/presentation/pages/splash_page.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
+import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
 
+final router = AppRouter();
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerDelegate: router.delegate(),
+            routeInformationParser: router.defaultRouteParser(),
             debugShowCheckedModeBanner: false,
             title: 'First Method',
             // You can use the library anywhere in the app even in theme
@@ -40,9 +44,8 @@ class MyApp extends StatelessWidget {
 
               // useMaterial3: true,
             ),
-            home: child,
           );
         },
-        child: const LoginPage());
+        child: const SplashPage());
   }
 }
