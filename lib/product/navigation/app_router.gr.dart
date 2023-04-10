@@ -32,6 +32,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegisterPage(),
       );
     },
+    HomaRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomaPage(),
+      );
+    },
   };
 }
 
@@ -73,6 +79,20 @@ class RegisterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomaPage]
+class HomaRoute extends PageRouteInfo<void> {
+  const HomaRoute({List<PageRouteInfo>? children})
+      : super(
+          HomaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomaRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

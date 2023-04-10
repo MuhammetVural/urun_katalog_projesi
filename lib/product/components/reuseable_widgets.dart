@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 
 TextField reuseableTextField(String text, bool isPasswordType, bool isEnabled,
     TextEditingController controller) {
@@ -17,7 +18,7 @@ TextField reuseableTextField(String text, bool isPasswordType, bool isEnabled,
       labelStyle: TextStyle(color: Colors.grey.withOpacity(0.7)),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.never,
-      fillColor: Colors.blueAccent.withOpacity(0.1),
+      fillColor: ColorManager.textFieldGreyBackround,
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
@@ -27,5 +28,3 @@ TextField reuseableTextField(String text, bool isPasswordType, bool isEnabled,
         : TextInputType.emailAddress,
   );
 }
-
-
