@@ -15,8 +15,9 @@ void main() {
 
   test('Get list all data', () async {
     final listDatas = await networkManager
-        .send<CategoryModel, List<CategoryModel>>('/categories',
-            parseModel: CategoryModel(), method: RequestType.GET);
+        .send<BaseCategoryModel, BaseCategoryModel>('categories',
+            parseModel: BaseCategoryModel(), method: RequestType.GET);
+
     expect(listDatas.data, isNotNull);
   });
 }
