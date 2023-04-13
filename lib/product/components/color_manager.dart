@@ -8,6 +8,7 @@ class ColorManager {
   static Color textGreyOpacity40 = Hexcolor.fromHex('#09093766');
   static Color textGreyOpacity60 = Hexcolor.fromHex('#09093799');
   static Color orangeButtonColor = Hexcolor.fromHex('#EF6B4A');
+  static Color whiteBackroundColor = Hexcolor.fromHex('#EF6B4A');
 
 
   //new colors

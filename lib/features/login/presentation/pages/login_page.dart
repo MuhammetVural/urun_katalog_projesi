@@ -1,10 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/components/font_manager.dart';
 import 'package:urun_katalog_projesi/product/components/reuseable_widgets.dart';
+import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
+
+import '../../../../main.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -101,27 +105,56 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Checkbox(
-                        value: isChecked,
-                        activeColor: Colors.amber,
-                        hoverColor: ColorManager.textAndButtonPurple,
-                        checkColor: Colors.amber,
-                        focusColor: ColorManager.textAndButtonPurple,
-                        onChanged: (newBool) {
-                          setState(() {
-                            isChecked = newBool;
-                          });
-                        }),
-                    Text(
-                      'Remember me',
-                      style: TextStyle(
-                          color: ColorManager.textAndButtonPurple,
-                          fontWeight: FontWeight.w500),
-                    )
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: isChecked,
+                            activeColor: Colors.amber,
+                            hoverColor: ColorManager.textAndButtonPurple,
+                            checkColor: Colors.amber,
+                            focusColor: ColorManager.textAndButtonPurple,
+                            onChanged: (newBool) {
+                              setState(() {
+                                isChecked = newBool;
+                              });
+                            }),
+                        Text(
+                          'Remember me',
+                          style: TextStyle(
+                              color: ColorManager.textAndButtonPurple,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 10.w),
+                      child: TextButton(
+                        onPressed: () {
+                          router.push(const RegisterRoute());
+                        },
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              color: ColorManager.textAndButtonPurple,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              )
+              ),
+              Container(
+                width: 350.w,
+                height: 60.h,
+                padding: EdgeInsets.symmetric(horizontal: 20.h),
+                child: ElevatedButton(
+                    onPressed: () {
+                      router.push(const HomaRoute());
+                    },
+                    child: const Text('Login')),
+              ),
             ],
           )),
         ),
