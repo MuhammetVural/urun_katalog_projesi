@@ -1,22 +1,47 @@
-import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
-import 'package:vexana/vexana.dart';
+import 'package:dio/dio.dart';
+
+import '../../../../core/network_manager/network_manager.dart';
+import '../models/category_model.dart';
 
 abstract class IHomeRepository {
-  final INetworkManager networkManager;
-
-  IHomeRepository(this.networkManager);
-
-  Future<BaseCategoryModel?> getAllItems();
+  Future<List<CategoryModel>> getCategories();
 }
 
-class HomeRepository extends IHomeRepository {
-  HomeRepository(super.networkManager);
+class HomeRepositoryImp implements IHomeRepository {
+  final NetworkManager _networkManager;
 
+  HomeRepositoryImp({required NetworkManager networkManager})
+      : _networkManager = networkManager;
   @override
-  Future<BaseCategoryModel?> getAllItems() async {
-    final response = await networkManager
-        .send<BaseCategoryModel, BaseCategoryModel>('categories',
-            parseModel: BaseCategoryModel(), method: RequestType.GET);
-    return response.data;
+  Future<List<CategoryModel>> getCategories() async {
+    try {
+      Response response = await _networkManager.get(path: "categories");
+      return response.data["category"]
+          .map<CategoryModel>((e) => CategoryModel.fromJson(e))
+          .toList();
+    } on DioError catch (e) {
+      print(e);
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
+}
+
+class HomeRepositorys {
+  NetworkManagerImp _networkManager = NetworkManagerImp();
+
+  Future<List<CategoryModel>> getCategories() async {
+    try {
+      Response response = await _networkManager.get(path: "categories");
+      return response.data["category"]
+          .map<CategoryModel>((e) => CategoryModel.fromJson(e))
+          .toList();
+    } on DioError catch (e) {
+      print(e);
+      return [];
+    } catch (e) {
+      return [];
+    }
   }
 }

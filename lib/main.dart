@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/features/login/presentation/pages/login_page.dart';
 import 'package:urun_katalog_projesi/features/splash/presentation/pages/splash_page.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
@@ -25,8 +26,10 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
             routerDelegate: router.delegate(),
             routeInformationParser: router.defaultRouteParser(),
+
             debugShowCheckedModeBanner: false,
             title: 'First Method',
+
             // You can use the library anywhere in the app even in theme
             theme: ThemeData(
               elevatedButtonTheme: ElevatedButtonThemeData(
@@ -45,7 +48,6 @@ class MyApp extends StatelessWidget {
               // useMaterial3: true,
             ),
           );
-        },
-        child: const SplashPage());
+        });
   }
 }
