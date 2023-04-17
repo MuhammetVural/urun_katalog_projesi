@@ -588,7 +588,7 @@ packages:
     source: hosted
     version: "4.1.0"
   riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: riverpod
       sha256: "77ab3bcd084bb19fa8717a526217787c725d7f5be938404c7839cd760fdf6ae5"

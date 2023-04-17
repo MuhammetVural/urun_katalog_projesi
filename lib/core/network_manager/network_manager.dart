@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class NetworkManager {
   Future get({
@@ -7,6 +8,7 @@ abstract class NetworkManager {
   });
 }
 
+@Singleton(as: NetworkManager)
 class NetworkManagerImp implements NetworkManager {
   late Dio dio;
 

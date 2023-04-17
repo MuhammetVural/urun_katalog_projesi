@@ -1,18 +1,27 @@
-import 'dart:developer';
+
 
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
-import 'package:urun_katalog_projesi/product/components/reuseable_widgets.dart';
 import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
+
+
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../main.dart';
 import '../../../../product/components/font_manager.dart';
+import '../../../../product/locator/locator.dart';
+import '../riverpod/home_provider.dart';
+import '../riverpod/home_state.dart';
+
+
+
+final homeProvider = NotifierProvider.autoDispose<HomeProvider, HomeState>(
+  () => HomeProvider(repository: getIt<HomeRepository>()),
+);
 
 @RoutePage()
 class HomaPage extends StatefulWidget {
@@ -51,7 +60,7 @@ class _HomaPageState extends State<HomaPage> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(
+          child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
@@ -128,8 +137,8 @@ class _HomaPageState extends State<HomaPage> {
                     height: 20.h,
                   ),
                 ],
-              );
-            
+              )
+           
         ));
   }
 }
