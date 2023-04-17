@@ -24,8 +24,6 @@ class HomaPage extends StatefulWidget {
 
 class _HomaPageState extends State<HomaPage> {
   final TextEditingController _searchController = TextEditingController();
-  late List<CategoryModel?> categoryModel = [];
-  HomeRepositorys iHomeRepository = HomeRepositorys();
   @override
   void initState() {
     // var a = iHomeRepository.getCategories();
@@ -53,11 +51,7 @@ class _HomaPageState extends State<HomaPage> {
           ),
         ),
         body: SingleChildScrollView(
-          child: FutureBuilder(
-            future: iHomeRepository.getCategories(),
-            builder: (context, snapshot) {
-              log(snapshot.data.toString());
-              return Column(
+          child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
@@ -67,15 +61,14 @@ class _HomaPageState extends State<HomaPage> {
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemCount: categoryModel.length,
+                        itemCount: 3,
                         itemBuilder: ((context, index) {
                           return Container(
                               decoration: BoxDecoration(
                                   color: ColorManager.textAndButtonPurple),
                               width: 100,
                               margin: const EdgeInsets.all(5),
-                              child: Text(categoryModel[index]?.name ??
-                                  " fdsgsdfgsdfg "));
+                              child: const Text(" fdsgsdfgsdfg "));
                         })),
                   ),
                   Padding(
@@ -136,8 +129,7 @@ class _HomaPageState extends State<HomaPage> {
                   ),
                 ],
               );
-            },
-          ),
+            
         ));
   }
 }
