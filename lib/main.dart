@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/features/login/presentation/pages/login_page.dart';
 import 'package:urun_katalog_projesi/features/splash/presentation/pages/splash_page.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
+import 'package:urun_katalog_projesi/product/locator/locator.dart';
 import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
 
 final router = AppRouter();
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,35 +23,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(390, 844),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp.router(
-            routerDelegate: router.delegate(),
-            routeInformationParser: router.defaultRouteParser(),
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp.router(
+          routerDelegate: router.delegate(),
+          routeInformationParser: router.defaultRouteParser(),
 
-            debugShowCheckedModeBanner: false,
-            title: 'First Method',
+          debugShowCheckedModeBanner: false,
+          title: 'First Method',
 
-            // You can use the library anywhere in the app even in theme
-            theme: ThemeData(
-              elevatedButtonTheme: ElevatedButtonThemeData(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorManager.orangeButtonColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+          // You can use the library anywhere in the app even in theme
+          theme: ThemeData(
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorManager.orangeButtonColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              primarySwatch: Colors.blue,
-              textTheme: Typography.englishLike2018.apply(
-                  fontSizeFactor: 1.sp, bodyColor: ColorManager.textColor),
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-
-              // useMaterial3: true,
             ),
-          );
-        });
+            primarySwatch: Colors.blue,
+            textTheme: Typography.englishLike2018
+                .apply(fontSizeFactor: 1.sp, bodyColor: ColorManager.textColor),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+
+            // useMaterial3: true,
+          ),
+          builder: (context, child) => HomaPage(),
+        );
+      },
+    );
   }
 }

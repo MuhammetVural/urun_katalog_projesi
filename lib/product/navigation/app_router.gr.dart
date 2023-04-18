@@ -15,9 +15,11 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     HomaRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomaRouteArgs>(orElse: () => const HomaRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomaPage(),
+        child: HomaPage(key: args.key),
       );
     },
     LoginRoute.name: (routeData) {
@@ -43,16 +45,30 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [HomaPage]
-class HomaRoute extends PageRouteInfo<void> {
-  const HomaRoute({List<PageRouteInfo>? children})
-      : super(
+class HomaRoute extends PageRouteInfo<HomaRouteArgs> {
+  HomaRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           HomaRoute.name,
+          args: HomaRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'HomaRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<HomaRouteArgs> page = PageInfo<HomaRouteArgs>(name);
+}
+
+class HomaRouteArgs {
+  const HomaRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomaRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
