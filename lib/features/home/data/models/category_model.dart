@@ -11,6 +11,7 @@ class CategoryModel with _$CategoryModel {
     @JsonKey(name: 'created_at') DateTime? createdAt,
   }) = _CategoryModel;
 
+
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);
 }
