@@ -28,6 +28,11 @@ class HomaPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(homeProvider);
     final provider = ref.watch(homeProvider.notifier);
+    final List<List<String>> data = [
+      ["Item 1.1", "Item 1.2", "Item 1.3"],
+      ["Item 2.1", "Item 2.2"],
+      ["Item 3.1", "Item 3.2", "Item 3.3", "Item 3.4"]
+    ];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorManager.white,
@@ -46,19 +51,29 @@ class HomaPage extends ConsumerWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-            child: Column(
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
-              height: 75.h,
+              height: 60.h,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: state.categories.length,
                   itemBuilder: ((context, index) {
-                    return ;
+                    return Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: ColorManager.textAndButtonPurple),
+                        margin: const EdgeInsets.all(10),
+                        child: Center(
+                          child: Text(
+                            state.categories[index].name,
+                            style: TextStyle(color: ColorManager.white),
+                          ),
+                        ));
                   })),
             ),
             Padding(
@@ -84,6 +99,45 @@ class HomaPage extends ConsumerWidget {
             ),
             SizedBox(
               height: 40.h,
+            ),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: state.categories.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(state.categories[index].name),
+                      Container(
+                        height: 50,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.categories.length,
+                          itemBuilder: (context, subIndex) {
+                            return Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  color: ColorManager.orangeButtonColor),
+                              margin: EdgeInsets.all(5),
+                              child: Center(
+                                child: Text(
+                                  state.categories[index].name,
+                                  style: TextStyle(
+                                      color: ColorManager.white, fontSize: 16),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,6 +170,6 @@ class HomaPage extends ConsumerWidget {
               height: 20.h,
             ),
           ],
-        )));
+        ));
   }
 }
