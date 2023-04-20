@@ -10,11 +10,18 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../main.dart';
 import '../../../../product/components/font_manager.dart';
 import '../../../../product/locator/locator.dart';
+import '../../data/repositories/product_repository.dart';
 import '../riverpod/home_provider.dart';
 import '../riverpod/home_state.dart';
+import '../riverpod/product_provider.dart';
+import '../riverpod/product_state.dart';
 
 final homeProvider = NotifierProvider.autoDispose<HomeProvider, HomeState>(
   () => HomeProvider(repository: getIt<HomeRepository>()),
+);
+final productProvider =
+    NotifierProvider.autoDispose<ProductProvider, ProductState>(
+  () => ProductProvider(repository: getIt<ProductRepository>()),
 );
 
 @RoutePage()
@@ -28,11 +35,9 @@ class HomaPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(homeProvider);
     final provider = ref.watch(homeProvider.notifier);
-    final List<List<String>> data = [
-      ["Item 1.1", "Item 1.2", "Item 1.3"],
-      ["Item 2.1", "Item 2.2"],
-      ["Item 3.1", "Item 3.2", "Item 3.3", "Item 3.4"]
-    ];
+
+    final state2 = ref.watch(productProvider);
+    final provider2 = ref.watch(productProvider.notifier);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorManager.white,
@@ -115,7 +120,7 @@ class HomaPage extends ConsumerWidget {
                         child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemCount: state.categories.length,
+                          itemCount: state2.products.length,
                           itemBuilder: (context, subIndex) {
                             return Container(
                               width: 100,
@@ -125,7 +130,7 @@ class HomaPage extends ConsumerWidget {
                               margin: EdgeInsets.all(5),
                               child: Center(
                                 child: Text(
-                                  state.categories[index].name,
+                                  state2.products[index].author,
                                   style: TextStyle(
                                       color: ColorManager.white, fontSize: 16),
                                 ),

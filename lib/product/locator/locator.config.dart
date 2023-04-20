@@ -14,6 +14,8 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:urun_katalog_projesi/core/network_manager/network_manager.dart'
     as _i3;
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart'
+    as _i5;
+import 'package:urun_katalog_projesi/features/home/data/repositories/product_repository.dart'
     as _i4;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -28,8 +30,10 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.singleton<_i3.NetworkManager>(_i3.NetworkManagerImp());
-    gh.lazySingleton<_i4.HomeRepository>(
-        () => _i4.HomeRepositoryImp(networkManager: gh<_i3.NetworkManager>()));
+    gh.lazySingleton<_i4.ProductRepository>(() =>
+        _i4.ProductRepositoryImp(networkManager: gh<_i3.NetworkManager>()));
+    gh.lazySingleton<_i5.HomeRepository>(
+        () => _i5.HomeRepositoryImp(networkManager: gh<_i3.NetworkManager>()));
     return this;
   }
 }
