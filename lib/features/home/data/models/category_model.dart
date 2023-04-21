@@ -8,7 +8,7 @@ class CategoryModel with _$CategoryModel {
   factory CategoryModel({
     @Default(0) int id,
     @Default("") String name,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
+    
   }) = _CategoryModel;
 
 

@@ -22,8 +22,6 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 mixin _$CategoryModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,8 +35,7 @@ abstract class $CategoryModelCopyWith<$Res> {
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
-  $Res call(
-      {int id, String name, @JsonKey(name: 'created_at') DateTime? createdAt});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -56,7 +53,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,10 +63,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
@@ -83,8 +75,7 @@ abstract class _$$_CategoryModelCopyWith<$Res>
       __$$_CategoryModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id, String name, @JsonKey(name: 'created_at') DateTime? createdAt});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -100,7 +91,6 @@ class __$$_CategoryModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_$_CategoryModel(
       id: null == id
@@ -111,10 +101,6 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -122,10 +108,7 @@ class __$$_CategoryModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CategoryModel implements _CategoryModel {
-  _$_CategoryModel(
-      {this.id = 0,
-      this.name = "",
-      @JsonKey(name: 'created_at') this.createdAt});
+  _$_CategoryModel({this.id = 0, this.name = ""});
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
@@ -136,13 +119,10 @@ class _$_CategoryModel implements _CategoryModel {
   @override
   @JsonKey()
   final String name;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, createdAt: $createdAt)';
+    return 'CategoryModel(id: $id, name: $name)';
   }
 
   @override
@@ -151,14 +131,12 @@ class _$_CategoryModel implements _CategoryModel {
         (other.runtimeType == runtimeType &&
             other is _$_CategoryModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -175,11 +153,7 @@ class _$_CategoryModel implements _CategoryModel {
 }
 
 abstract class _CategoryModel implements CategoryModel {
-  factory _CategoryModel(
-          {final int id,
-          final String name,
-          @JsonKey(name: 'created_at') final DateTime? createdAt}) =
-      _$_CategoryModel;
+  factory _CategoryModel({final int id, final String name}) = _$_CategoryModel;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
@@ -188,9 +162,6 @@ abstract class _CategoryModel implements CategoryModel {
   int get id;
   @override
   String get name;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>

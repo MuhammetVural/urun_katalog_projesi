@@ -6,19 +6,20 @@ import '../models/category_model.dart';
 import '../models/product_model.dart';
 
 abstract class ProductRepository {
-  Future<List<ProductModel>> getProducts();
+  Future<List<ProductModel>> getCategories();
 }
 
 @LazySingleton(as: ProductRepository)
-class ProductRepositoryImp implements ProductRepository {
+class HomeRepositoryImp implements ProductRepository {
   final NetworkManager _networkManager;
+  final int number = 1;
 
-  ProductRepositoryImp({required NetworkManager networkManager})
+  HomeRepositoryImp({required NetworkManager networkManager})
       : _networkManager = networkManager;
   @override
-  Future<List<ProductModel>> getProducts() async {
+  Future<List<ProductModel>> getCategories() async {
     try {
-      Response response = await _networkManager.get(path: "products");
+      Response response = await _networkManager.get(path: "products/$number");
       return response.data["product"]
           .map<ProductModel>((e) => ProductModel.fromJson(e))
           .toList();

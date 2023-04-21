@@ -1,11 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-
 import '../../../../core/network_manager/network_manager.dart';
 import '../models/category_model.dart';
-
-
 
 abstract class HomeRepository {
   Future<List<CategoryModel>> getCategories();

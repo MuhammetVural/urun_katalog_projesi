@@ -21,7 +21,7 @@ final homeProvider = NotifierProvider.autoDispose<HomeProvider, HomeState>(
 );
 final productProvider =
     NotifierProvider.autoDispose<ProductProvider, ProductState>(
-  () => ProductProvider(repository: getIt<ProductRepository>()),
+  () => ProductProvider(repository2: getIt<ProductRepository>()),
 );
 
 @RoutePage()
@@ -65,7 +65,7 @@ class HomaPage extends ConsumerWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: state.categories.length,
+                  itemCount: state2.products.length,
                   itemBuilder: ((context, index) {
                     return Container(
                         padding: const EdgeInsets.all(10),
@@ -75,8 +75,10 @@ class HomaPage extends ConsumerWidget {
                         margin: const EdgeInsets.all(10),
                         child: Center(
                           child: Text(
-                            state.categories[index].name,
-                            style: TextStyle(color: ColorManager.white),
+                            state2.products[index].name,
+                            style: TextStyle(
+                              color: ColorManager.white,
+                            ),
                           ),
                         ));
                   })),
@@ -114,7 +116,12 @@ class HomaPage extends ConsumerWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(state.categories[index].name),
+                      Text(
+                        state.categories[index].name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: FontSize.s20),
+                      ),
                       Container(
                         height: 50,
                         child: ListView.builder(
@@ -130,7 +137,7 @@ class HomaPage extends ConsumerWidget {
                               margin: EdgeInsets.all(5),
                               child: Center(
                                 child: Text(
-                                  state2.products[index].author,
+                                  state2.products[subIndex].name,
                                   style: TextStyle(
                                       color: ColorManager.white, fontSize: 16),
                                 ),

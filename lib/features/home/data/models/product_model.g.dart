@@ -8,16 +8,16 @@ part of 'product_model.dart';
 
 _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
     _$_ProductModel(
-      author: json['author'] as String? ?? ' ',
-      name: json['name'] as String? ?? ' ',
       price: json['price'] as int? ?? 0,
-      image: json['image'] as String? ?? '',
+      name: json['name'] as String? ?? "",
+      author: json['author'] as String? ?? "",
+      image: json['image'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
     <String, dynamic>{
-      'author': instance.author,
-      'name': instance.name,
       'price': instance.price,
+      'name': instance.name,
+      'author': instance.author,
       'image': instance.image,
     };
