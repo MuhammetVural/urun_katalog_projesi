@@ -1,9 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:urun_katalog_projesi/features/categorydetail/presentation/pages/category_detail_page.dart';
+import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/controller/simple_ui_controller.dart';
@@ -13,11 +14,11 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../main.dart';
 import '../../../../product/components/font_manager.dart';
 import '../../../../product/locator/locator.dart';
-import '../../data/repositories/product_repository.dart';
-import '../riverpod/home_provider.dart';
-import '../riverpod/home_state.dart';
-import '../riverpod/product_provider.dart';
-import '../riverpod/product_state.dart';
+import '../../../home/data/repositories/product_repository.dart';
+import '../../../home/presentation/riverpod/home_provider.dart';
+import '../../../home/presentation/riverpod/home_state.dart';
+import '../../../home/presentation/riverpod/product_provider.dart';
+import '../../../home/presentation/riverpod/product_state.dart';
 
 final homeProvider = NotifierProvider.autoDispose<HomeProvider, HomeState>(
   () => HomeProvider(repository: getIt<HomeRepository>()),
@@ -28,9 +29,12 @@ final productProvider =
 );
 
 @RoutePage()
-class HomaPage extends ConsumerWidget {
-  HomaPage({super.key});
-  late TabController tabController;
+class CategoryDetailPage extends ConsumerWidget {
+  final CategoryModel category;
+  CategoryDetailPage(
+    this.category, {
+    super.key,
+  });
   SimpleUiController simpleUiController = Get.put(SimpleUiController());
 
   final TextEditingController _searchController = TextEditingController();
@@ -43,8 +47,7 @@ class HomaPage extends ConsumerWidget {
     final state2 = ref.watch(productProvider);
     final provider2 = ref.watch(productProvider.notifier);
 
-    
-
+    bool isSelect = false;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorManager.white,
@@ -57,7 +60,7 @@ class HomaPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                'Catalog',
+                category.name,
                 style: TextStyle(color: ColorManager.textColor),
               ),
             ],
@@ -133,13 +136,14 @@ class HomaPage extends ConsumerWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: state.categories.length,
                 itemBuilder: (context, index) {
+                  List<CategoryModel> items = state.categories[index];
                   return InkWell(
                     onTap: () {
                       Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CategoryDetailPage(category: state.categories[index],)));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  UrunDetaySayfasi(menu: category[index])));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,7 +172,8 @@ class HomaPage extends ConsumerWidget {
                                   padding: EdgeInsets.all(10),
                                   color: ColorManager.textFieldGreyBackround,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
                                         width: 80.w,
@@ -192,19 +197,24 @@ class HomaPage extends ConsumerWidget {
                                               Text(
                                                 state2.products[subIndex].name,
                                                 style: TextStyle(
-                                                    color: ColorManager.textColor,
+                                                    color:
+                                                        ColorManager.textColor,
                                                     fontSize: 16,
-                                                    fontWeight: FontWeight.w500),
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
                                               SizedBox(
                                                 height: 5.h,
                                               ),
                                               Text(
-                                                state2.products[subIndex].author,
+                                                state2
+                                                    .products[subIndex].author,
                                                 style: TextStyle(
-                                                    color: ColorManager.textColor,
+                                                    color:
+                                                        ColorManager.textColor,
                                                     fontSize: 16,
-                                                    fontWeight: FontWeight.w400),
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),

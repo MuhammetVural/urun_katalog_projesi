@@ -9,6 +9,7 @@ class ProductModel with _$ProductModel {
     @Default("") String author,
     @Default("") String cover,
     @Default(0) int id,
+    @Default(0) double price,
     @Default("") String name,
   }) = _ProductModel;
 

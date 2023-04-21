@@ -11,6 +11,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       author: json['author'] as String? ?? "",
       cover: json['cover'] as String? ?? "",
       id: json['id'] as int? ?? 0,
+      price: (json['price'] as num?)?.toDouble() ?? 0,
       name: json['name'] as String? ?? "",
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'author': instance.author,
       'cover': instance.cover,
       'id': instance.id,
+      'price': instance.price,
       'name': instance.name,
     };
