@@ -1,32 +1,21 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
+import 'package:urun_katalog_projesi/features/home/data/models/product_model.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
-import 'package:vexana/vexana.dart';
+import 'package:urun_katalog_projesi/features/home/data/repositories/product_repository.dart';
+import 'package:urun_katalog_projesi/product/locator/locator.dart';
 
 void main() {
-  late INetworkManager networkManager;
-  late IHomeRepository homeRepository;
-
+  late ProductRepository _repository2;
+  late HomeRepository _repository;
   setUp(() {
-    networkManager = NetworkManager<CategoryModel>(
-      options:
-          BaseOptions(baseUrl: 'https://assign-api.piton.com.tr/api/rest/'),
-      isEnableLogger: true,
-    );
-    homeRepository = HomeRepository(networkManager);
+    configureDependencies();
+    _repository = getIt();
+    _repository2 = getIt();
   });
 
-  test('Get list all data', () async {
-    final listDatas = await networkManager
-        .send<BaseCategoryModel, BaseCategoryModel>('categories',
-            parseModel: BaseCategoryModel(), method: RequestType.GET);
-
-    expect(listDatas.data, isNotNull);
-  });
-
-  test('Get list all manager', () async {
-    final listDatas = await homeRepository.getAllItems();
-
-    expect(listDatas?.category, isNotNull);
+  test('GetProducts', () async {
+    List<ProductModel> products = await _repository2.getCategories();
+    expect(products, isNotEmpty);
   });
 }

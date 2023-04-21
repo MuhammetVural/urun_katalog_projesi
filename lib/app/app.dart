@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/features/login/presentation/pages/login_page.dart';
 
 class MyApp extends StatefulWidget {
@@ -35,6 +36,6 @@ class _MyAppState extends State<MyApp> {
             home: child,
           );
         },
-        child: const LoginPage());
+        child:  HomaPage());
   }
 }

@@ -14,16 +14,18 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    HomaRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomaRouteArgs>(orElse: () => const HomaRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: HomaPage(key: args.key),
+      );
+    },
     LoginRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const LoginPage(),
-      );
-    },
-    SplashRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SplashPage(),
       );
     },
     RegisterRoute.name: (routeData) {
@@ -32,13 +34,41 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegisterPage(),
       );
     },
-    HomaRoute.name: (routeData) {
+    SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomaPage(),
+        child: const SplashPage(),
       );
     },
   };
+}
+
+/// generated route for
+/// [HomaPage]
+class HomaRoute extends PageRouteInfo<HomaRouteArgs> {
+  HomaRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HomaRoute.name,
+          args: HomaRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'HomaRoute';
+
+  static const PageInfo<HomaRouteArgs> page = PageInfo<HomaRouteArgs>(name);
+}
+
+class HomaRouteArgs {
+  const HomaRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomaRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -51,20 +81,6 @@ class LoginRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SplashPage]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -84,15 +100,15 @@ class RegisterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HomaPage]
-class HomaRoute extends PageRouteInfo<void> {
-  const HomaRoute({List<PageRouteInfo>? children})
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
       : super(
-          HomaRoute.name,
+          SplashRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomaRoute';
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
