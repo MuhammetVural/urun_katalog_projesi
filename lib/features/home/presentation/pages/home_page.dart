@@ -123,23 +123,45 @@ class HomaPage extends ConsumerWidget {
                             fontSize: FontSize.s20),
                       ),
                       Container(
-                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4)),
+                        height: 180.h,
                         child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: state2.products.length,
                           itemBuilder: (context, subIndex) {
-                            return Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  color: ColorManager.orangeButtonColor),
-                              margin: EdgeInsets.all(5),
-                              child: Center(
-                                child: Text(
-                                  state2.products[subIndex].author,
-                                  style: TextStyle(
-                                      color: ColorManager.white, fontSize: 16),
+                            return Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                color: ColorManager.textFieldGreyBackround,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 80.w,
+                                      height: 180.h,
+                                      padding: EdgeInsets.all(10),
+                                      child: Image(
+                                          image: NetworkImage(
+                                        state2.products[index].cover,
+                                      )),
+                                    ),
+                                    Column(
+                                      children: [
+                                        Center(
+                                          child: Text(
+                                            state2.products[subIndex].author,
+                                            style: TextStyle(
+                                                color: ColorManager.textColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             );
