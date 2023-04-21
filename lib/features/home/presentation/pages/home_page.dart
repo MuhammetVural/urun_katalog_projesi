@@ -137,7 +137,7 @@ class HomaPage extends ConsumerWidget {
                               margin: EdgeInsets.all(5),
                               child: Center(
                                 child: Text(
-                                  state2.products[subIndex].name,
+                                  state2.products[subIndex].author,
                                   style: TextStyle(
                                       color: ColorManager.white, fontSize: 16),
                                 ),

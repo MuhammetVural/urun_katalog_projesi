@@ -18,4 +18,8 @@ void main() {
     List<ProductModel> products = await _repository2.getCategories();
     expect(products, isNotEmpty);
   });
+  // test('Getcategories', () async {
+  //   List<CategoryModel> category = await _repository.getCategories();
+  //   expect(category, isNotEmpty);
+  // });
 }

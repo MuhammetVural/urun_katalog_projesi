@@ -20,10 +20,10 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
-  int get price => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String get cover => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $ProductModelCopyWith<$Res> {
           ProductModel value, $Res Function(ProductModel) then) =
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
-  $Res call({int price, String name, String author, String image});
+  $Res call({String author, String cover, int id, String name});
 }
 
 /// @nodoc
@@ -53,27 +53,27 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? price = null,
-    Object? name = null,
     Object? author = null,
-    Object? image = null,
+    Object? cover = null,
+    Object? id = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -87,7 +87,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       __$$_ProductModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int price, String name, String author, String image});
+  $Res call({String author, String cover, int id, String name});
 }
 
 /// @nodoc
@@ -101,27 +101,27 @@ class __$$_ProductModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? price = null,
-    Object? name = null,
     Object? author = null,
-    Object? image = null,
+    Object? cover = null,
+    Object? id = null,
+    Object? name = null,
   }) {
     return _then(_$_ProductModel(
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      cover: null == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -131,27 +131,27 @@ class __$$_ProductModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductModel implements _ProductModel {
   _$_ProductModel(
-      {this.price = 0, this.name = "", this.author = "", this.image = ""});
+      {this.author = "", this.cover = "", this.id = 0, this.name = ""});
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelFromJson(json);
 
   @override
   @JsonKey()
-  final int price;
-  @override
-  @JsonKey()
-  final String name;
-  @override
-  @JsonKey()
   final String author;
   @override
   @JsonKey()
-  final String image;
+  final String cover;
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
+  final String name;
 
   @override
   String toString() {
-    return 'ProductModel(price: $price, name: $name, author: $author, image: $image)';
+    return 'ProductModel(author: $author, cover: $cover, id: $id, name: $name)';
   }
 
   @override
@@ -159,15 +159,15 @@ class _$_ProductModel implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductModel &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.author, author) || other.author == author) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.cover, cover) || other.cover == cover) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, price, name, author, image);
+  int get hashCode => Object.hash(runtimeType, author, cover, id, name);
 
   @JsonKey(ignore: true)
   @override
@@ -185,22 +185,22 @@ class _$_ProductModel implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
-      {final int price,
-      final String name,
-      final String author,
-      final String image}) = _$_ProductModel;
+      {final String author,
+      final String cover,
+      final int id,
+      final String name}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
 
   @override
-  int get price;
-  @override
-  String get name;
-  @override
   String get author;
   @override
-  String get image;
+  String get cover;
+  @override
+  int get id;
+  @override
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

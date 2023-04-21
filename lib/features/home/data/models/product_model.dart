@@ -6,13 +6,11 @@ part 'product_model.g.dart';
 @freezed
 class ProductModel with _$ProductModel {
   factory ProductModel({
-    @Default(0) int price,
-    @Default("") String name,
     @Default("") String author,
-    @Default("") String image,
-    
+    @Default("") String cover,
+    @Default(0) int id,
+    @Default("") String name,
   }) = _ProductModel;
-
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
