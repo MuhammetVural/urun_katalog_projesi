@@ -23,7 +23,8 @@ class LoginRepositoryImp implements LoginRepository {
   LoginRepositoryImp({required NetworkManager networkManager}): _networkManager = networkManager;
   
   @override
-  Future<List<LoginModel>> getLogin() async {
-    Response response = await _networkManager.
-  } 
+  Future<LoginModel?> getLogin(String email, String password) {
+    // TODO: implement getLogin
+    throw UnimplementedError();
+  }
 }
