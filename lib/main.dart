@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:urun_katalog_projesi/features/categorydetail/presentation/pages/category_detail_page.dart';
 import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/features/login/presentation/pages/login_page.dart';
 import 'package:urun_katalog_projesi/features/splash/presentation/pages/splash_page.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
 
             // useMaterial3: true,
           ),
-          builder: (context, child) => HomaPage(),
+          builder: (context, child) => CategoryDetailPage(),
         );
       },
     );

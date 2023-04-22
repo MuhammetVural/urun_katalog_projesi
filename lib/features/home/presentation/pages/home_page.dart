@@ -135,11 +135,11 @@ class HomaPage extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CategoryDetailPage(category: state.categories[index],)));
+                      // Navigator.push(
+                      //             context,
+                      //             MaterialPageRoute(
+                      //                 builder: (context) =>
+                      //                     CategoryDetailPage(category: state.categories[index],)));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

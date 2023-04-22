@@ -30,9 +30,7 @@ final productProvider =
 
 @RoutePage()
 class CategoryDetailPage extends ConsumerWidget {
-  final CategoryModel category;
-  CategoryDetailPage(
-    this.category, {
+  CategoryDetailPage({
     super.key,
   });
   SimpleUiController simpleUiController = Get.put(SimpleUiController());
@@ -47,20 +45,16 @@ class CategoryDetailPage extends ConsumerWidget {
     final state2 = ref.watch(productProvider);
     final provider2 = ref.watch(productProvider.notifier);
 
-    bool isSelect = false;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorManager.white,
           elevation: 0.3,
-          leading: Padding(
-            padding: EdgeInsets.only(left: 20.0.h),
-            child: Image.asset(Assets.images.logo.path),
-          ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                category.name,
+                "Best Seller",
+                //category.name,
                 style: TextStyle(color: ColorManager.textColor),
               ),
             ],
@@ -69,42 +63,8 @@ class CategoryDetailPage extends ConsumerWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.h),
-              height: 60.h,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: state.categories.length,
-                  itemBuilder: ((context, index) {
-                    return Obx(
-                      () => GestureDetector(
-                        onTap: () {
-                          simpleUiController.selectedIndex.value = index;
-                        },
-                        child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: index ==
-                                        simpleUiController.selectedIndex.value
-                                    ? ColorManager.textAndButtonPurple
-                                    : ColorManager.textFieldGreyBackround),
-                            margin: const EdgeInsets.all(10),
-                            child: Center(
-                              child: Text(
-                                state.categories[index].name,
-                                style: TextStyle(
-                                  color: index ==
-                                          simpleUiController.selectedIndex.value
-                                      ? ColorManager.white
-                                      : Colors.grey.withOpacity(0.7),
-                                ),
-                              ),
-                            )),
-                      ),
-                    );
-                  })),
+            SizedBox(
+              height: 30.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
@@ -131,113 +91,77 @@ class CategoryDetailPage extends ConsumerWidget {
               height: 40.h,
             ),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: state.categories.length,
-                itemBuilder: (context, index) {
-                  List<CategoryModel> items = state.categories[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  UrunDetaySayfasi(menu: category[index])));
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            state.categories[index].name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: FontSize.s20),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4)),
-                          height: 180.h,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: state2.products.length,
-                            itemBuilder: (context, subIndex) {
-                              return Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Container(
-                                  padding: EdgeInsets.all(10),
-                                  color: ColorManager.textFieldGreyBackround,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 80.w,
-                                        height: 180.h,
-                                        padding: EdgeInsets.all(10),
-                                        child: Image(
-                                            image: NetworkImage(
-                                          state2.products[index].cover,
-                                        )),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                state2.products[subIndex].name,
-                                                style: TextStyle(
-                                                    color:
-                                                        ColorManager.textColor,
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              SizedBox(
-                                                height: 5.h,
-                                              ),
-                                              Text(
-                                                state2
-                                                    .products[subIndex].author,
-                                                style: TextStyle(
-                                                    color:
-                                                        ColorManager.textColor,
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            state2.products[index].price
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(4)),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 2.1 / 3.4),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: state2.products.length,
+                  itemBuilder: (context, subIndex) {
+                    return Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Container(
+                        height: 250.h,
+                        padding: EdgeInsets.all(10),
+                        color: ColorManager.textFieldGreyBackround,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 225.w,
+                              width: 150.w,
+                              child: Image(
+                                  image: NetworkImage(
+                                state2.products[subIndex].cover,
+                              )),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  state2.products[subIndex].name,
+                                  style: TextStyle(
+                                      color: ColorManager.textColor,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              );
-                            },
-                          ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      state2.products[subIndex].author,
+                                      style: TextStyle(
+                                          color: ColorManager.grey2
+                                              .withOpacity(0.8),
+                                          fontSize: 8,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      '${state2.products[subIndex].price.toString()} \$',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              ColorManager.textAndButtonPurple),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                },
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             Row(
