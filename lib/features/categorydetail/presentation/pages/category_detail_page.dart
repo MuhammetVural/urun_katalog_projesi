@@ -59,11 +59,15 @@ class CategoryDetailPage extends ConsumerWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                state.categories[getIndex].name,
-                //category.name,
-                style: TextStyle(color: ColorManager.textColor),
-              ),
+              state.isLoading == true
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Text(
+                      state.categories[getIndex].name,
+                      //category.name,
+                      style: TextStyle(color: ColorManager.textColor),
+                    ),
             ],
           ),
         ),
