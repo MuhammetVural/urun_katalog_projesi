@@ -119,7 +119,7 @@ class CategoryDetailPage extends ConsumerWidget {
                         height: 250.h,
                         padding: EdgeInsets.all(10),
                         color: ColorManager.textFieldGreyBackround,
-                        child: GestureDetector(
+                        child: InkWell(
                           onTap: () {
                             Navigator.push(
                                 context,
