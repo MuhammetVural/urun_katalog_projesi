@@ -11,6 +11,7 @@ class ProductModel with _$ProductModel {
     @Default(0) int id,
     @Default(0) double price,
     @Default("") String name,
+    @Default("") String description,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

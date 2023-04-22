@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/bookdetail/presentation/pages/book_detail_page.dart';
 import '../../features/categorydetail/presentation/pages/category_detail_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/login/presentation/pages/login_page.dart';
@@ -23,8 +24,9 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: RegisterRoute.page, path: '/register'),
     AutoRoute(
       page: HomaRoute.page,
-      path: '/',
+      path: '/home',
     ),
-    AutoRoute(page: CategoryDetailRoute.page, path: '/category')
+    AutoRoute(page: CategoryDetailRoute.page, path: '/category'),
+    AutoRoute(page: BookDetailRoute.page, path: '/book'),
   ];
 }

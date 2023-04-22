@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:urun_katalog_projesi/features/bookdetail/presentation/pages/book_detail_page.dart';
 import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
@@ -50,7 +51,7 @@ class CategoryDetailPage extends ConsumerWidget {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios_new,
-              color: ColorManager.textAndButtonPurple,
+              color: ColorManager.textColor,
             ),
             onPressed: () => Navigator.pop(context),
           ),
@@ -118,90 +119,73 @@ class CategoryDetailPage extends ConsumerWidget {
                         height: 250.h,
                         padding: EdgeInsets.all(10),
                         color: ColorManager.textFieldGreyBackround,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 225.w,
-                              width: 150.w,
-                              child: Image(
-                                  image: NetworkImage(
-                                state2.products[subIndex].cover,
-                              )),
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  state2.products[subIndex].name,
-                                  style: TextStyle(
-                                      color: ColorManager.textColor,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      state2.products[subIndex].author,
-                                      style: TextStyle(
-                                          color: ColorManager.grey2
-                                              .withOpacity(0.8),
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      '${state2.products[subIndex].price.toString()} \$',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              ColorManager.textAndButtonPurple),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BookDetailPage(
+                                          getIndex1: subIndex,
+                                        )));
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 225.w,
+                                width: 150.w,
+                                child: Image(
+                                    image: NetworkImage(
+                                  state2.products[subIndex].cover,
+                                )),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    state2.products[subIndex].name,
+                                    style: TextStyle(
+                                        color: ColorManager.textColor,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        state2.products[subIndex].author,
+                                        style: TextStyle(
+                                            color: ColorManager.grey2
+                                                .withOpacity(0.8),
+                                            fontSize: 8,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        '${state2.products[subIndex].price.toString()} \$',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: ColorManager
+                                                .textAndButtonPurple),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w),
-                  child: const Text(
-                    'Best Seller',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: FontSize.s20),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 10.w),
-                  child: TextButton(
-                    onPressed: () {
-                      router.push(HomaRoute());
-                    },
-                    child: Text(
-                      'View All',
-                      style: TextStyle(
-                          color: ColorManager.orangeButtonColor,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
-              ],
             ),
             SizedBox(
               height: 20.h,

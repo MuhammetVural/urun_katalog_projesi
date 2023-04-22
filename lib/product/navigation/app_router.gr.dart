@@ -50,6 +50,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
+    BookDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<BookDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: BookDetailPage(
+          key: args.key,
+          getIndex1: args.getIndex1,
+        ),
+      );
+    },
   };
 }
 
@@ -159,4 +169,42 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BookDetailPage]
+class BookDetailRoute extends PageRouteInfo<BookDetailRouteArgs> {
+  BookDetailRoute({
+    Key? key,
+    required int getIndex1,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BookDetailRoute.name,
+          args: BookDetailRouteArgs(
+            key: key,
+            getIndex1: getIndex1,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BookDetailRoute';
+
+  static const PageInfo<BookDetailRouteArgs> page =
+      PageInfo<BookDetailRouteArgs>(name);
+}
+
+class BookDetailRouteArgs {
+  const BookDetailRouteArgs({
+    this.key,
+    required this.getIndex1,
+  });
+
+  final Key? key;
+
+  final int getIndex1;
+
+  @override
+  String toString() {
+    return 'BookDetailRouteArgs{key: $key, getIndex1: $getIndex1}';
+  }
 }
