@@ -10,6 +10,8 @@ import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/locator/locator.dart';
 import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
 
+import 'features/bookdetail/presentation/pages/book_detail_page.dart';
+
 final router = AppRouter();
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +56,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
+      
     );
   }
 }
