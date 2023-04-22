@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -30,9 +31,8 @@ final productProvider =
 
 @RoutePage()
 class CategoryDetailPage extends ConsumerWidget {
-  CategoryDetailPage({
-    super.key,
-  });
+  CategoryDetailPage({super.key, required this.getIndex});
+  int getIndex;
   SimpleUiController simpleUiController = Get.put(SimpleUiController());
 
   final TextEditingController _searchController = TextEditingController();
@@ -47,13 +47,17 @@ class CategoryDetailPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
+          leading: Padding(
+            padding: EdgeInsets.only(left: 20.0.h),
+            child: Image.asset(Assets.images.logo.path),
+          ),
           backgroundColor: ColorManager.white,
           elevation: 0.3,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                "Best Seller",
+                state.categories[getIndex].name,
                 //category.name,
                 style: TextStyle(color: ColorManager.textColor),
               ),
@@ -96,9 +100,7 @@ class CategoryDetailPage extends ConsumerWidget {
                     BoxDecoration(borderRadius: BorderRadius.circular(4)),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      childAspectRatio: 2.1 / 3.4),
+                      crossAxisCount: 2, childAspectRatio: 2.1 / 3.4),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: state2.products.length,
@@ -120,6 +122,9 @@ class CategoryDetailPage extends ConsumerWidget {
                                   image: NetworkImage(
                                 state2.products[subIndex].cover,
                               )),
+                            ),
+                            SizedBox(
+                              height: 5.h,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

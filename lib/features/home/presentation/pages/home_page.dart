@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -42,8 +43,6 @@ class HomaPage extends ConsumerWidget {
 
     final state2 = ref.watch(productProvider);
     final provider2 = ref.watch(productProvider.notifier);
-
-    
 
     return Scaffold(
         appBar: AppBar(
@@ -135,23 +134,44 @@ class HomaPage extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //             context,
-                      //             MaterialPageRoute(
-                      //                 builder: (context) =>
-                      //                     CategoryDetailPage(category: state.categories[index],)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CategoryDetailPage(
+                                    getIndex: index,
+                                  )));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Text(
-                            state.categories[index].name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: FontSize.s20),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Text(
+                                state.categories[index].name,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: FontSize.s20),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: 10.w),
+                              child: TextButton(
+                                onPressed: () {
+                                  router.push(HomaRoute());
+                                },
+                                child: Text(
+                                  'View All',
+                                  style: TextStyle(
+                                      color: ColorManager.orangeButtonColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: FontSize.s12),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -168,7 +188,8 @@ class HomaPage extends ConsumerWidget {
                                   padding: EdgeInsets.all(10),
                                   color: ColorManager.textFieldGreyBackround,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
                                         width: 80.w,
@@ -192,19 +213,24 @@ class HomaPage extends ConsumerWidget {
                                               Text(
                                                 state2.products[subIndex].name,
                                                 style: TextStyle(
-                                                    color: ColorManager.textColor,
+                                                    color:
+                                                        ColorManager.textColor,
                                                     fontSize: 16,
-                                                    fontWeight: FontWeight.w500),
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
                                               SizedBox(
                                                 height: 5.h,
                                               ),
                                               Text(
-                                                state2.products[subIndex].author,
+                                                state2
+                                                    .products[subIndex].author,
                                                 style: TextStyle(
-                                                    color: ColorManager.textColor,
+                                                    color:
+                                                        ColorManager.textColor,
                                                     fontSize: 16,
-                                                    fontWeight: FontWeight.w400),
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),

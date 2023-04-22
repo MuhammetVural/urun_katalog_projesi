@@ -52,7 +52,6 @@ class MyApp extends StatelessWidget {
 
             // useMaterial3: true,
           ),
-          builder: (context, child) => CategoryDetailPage(),
         );
       },
     );

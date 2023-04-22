@@ -14,6 +14,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CategoryDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<CategoryDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CategoryDetailPage(
+          key: args.key,
+          getIndex: args.getIndex,
+        ),
+      );
+    },
     HomaRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomaRouteArgs>(orElse: () => const HomaRouteArgs());
@@ -41,6 +51,44 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [CategoryDetailPage]
+class CategoryDetailRoute extends PageRouteInfo<CategoryDetailRouteArgs> {
+  CategoryDetailRoute({
+    Key? key,
+    required int getIndex,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryDetailRoute.name,
+          args: CategoryDetailRouteArgs(
+            key: key,
+            getIndex: getIndex,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryDetailRoute';
+
+  static const PageInfo<CategoryDetailRouteArgs> page =
+      PageInfo<CategoryDetailRouteArgs>(name);
+}
+
+class CategoryDetailRouteArgs {
+  const CategoryDetailRouteArgs({
+    this.key,
+    required this.getIndex,
+  });
+
+  final Key? key;
+
+  final int getIndex;
+
+  @override
+  String toString() {
+    return 'CategoryDetailRouteArgs{key: $key, getIndex: $getIndex}';
+  }
 }
 
 /// generated route for
