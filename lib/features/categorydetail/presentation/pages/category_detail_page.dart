@@ -47,9 +47,12 @@ class CategoryDetailPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          leading: Padding(
-            padding: EdgeInsets.only(left: 20.0.h),
-            child: Image.asset(Assets.images.logo.path),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              color: ColorManager.textAndButtonPurple,
+            ),
+            onPressed: () => Navigator.pop(context),
           ),
           backgroundColor: ColorManager.white,
           elevation: 0.3,
