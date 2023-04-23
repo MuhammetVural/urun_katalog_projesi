@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:urun_katalog_projesi/features/login/data/models/login_model.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 
 TextField reuseableTextField(String text, bool isPasswordType, bool isEnabled,
@@ -26,5 +27,8 @@ TextField reuseableTextField(String text, bool isPasswordType, bool isEnabled,
     keyboardType: isPasswordType
         ? TextInputType.visiblePassword
         : TextInputType.emailAddress,
+        onEditingComplete: () {
+          
+        },
   );
 }

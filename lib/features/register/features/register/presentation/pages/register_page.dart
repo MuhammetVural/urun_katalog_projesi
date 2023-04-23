@@ -148,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.h),
                 child: ElevatedButton(
                     onPressed: () {
-                      router.push(HomaRoute());
+                     // router.push(HomeRoute(loginModel: null));
                     },
                     child: const Text('Register')),
               ),

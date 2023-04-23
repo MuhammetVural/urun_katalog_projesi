@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
+import 'package:urun_katalog_projesi/features/login/data/models/login_model.dart';
+import 'package:urun_katalog_projesi/features/login/data/repositories/login_repository.dart';
 import 'package:urun_katalog_projesi/gen/assets.gen.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/components/font_manager.dart';
@@ -12,7 +14,9 @@ import '../../../../main.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({
+    super.key,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -21,6 +25,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
+  final LoginRepository _loginService = LoginRepositoryImp();
   @override
   Widget build(BuildContext context) {
     bool? isChecked = false;
@@ -95,10 +100,39 @@ class _LoginPageState extends State<LoginPage> {
                 height: 8.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.h),
-                child: reuseableTextField(
-                    '···········', true, true, _passwordTextController),
-              ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: TextField(
+                    controller: _passwordTextController,
+                    // obscureText: _obsecureText,
+                    obscureText: true,
+                    enabled: true,
+                    enableSuggestions: true,
+                    autocorrect: true,
+                    cursorColor: Colors.grey,
+                    style: TextStyle(color: Colors.black54.withOpacity(0.8)),
+                    decoration: InputDecoration(
+                      labelText: '............',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.withOpacity(0.7)),
+                      filled: true,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      fillColor: ColorManager.textFieldGreyBackround,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: const BorderSide(
+                              width: 0, style: BorderStyle.none)),
+                    ),
+                    keyboardType: true
+                        ? TextInputType.visiblePassword
+                        : TextInputType.emailAddress,
+                    onEditingComplete: () async {
+                      LoginModel response = await _loginService.getLogin(
+                          _emailTextController.text,
+                          _passwordTextController.text);
+                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      //     builder: (_) => HomePage(loginModel: response),));
+                    },
+                  )),
               SizedBox(
                 height: 5.h,
               ),
@@ -151,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.h),
                 child: ElevatedButton(
                     onPressed: () {
-                      router.push( HomaRoute());
+                      //  router.push(HomeRoute(loginModel: null));
                     },
                     child: const Text('Login')),
               ),

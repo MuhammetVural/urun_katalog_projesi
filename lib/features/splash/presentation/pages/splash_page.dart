@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20.h),
                   child: ElevatedButton(
                       onPressed: () {
-                        router.push(const LoginRoute());
+                        router.push( const LoginRoute());
                       },
                       child: const Text('Login')),
                 ),
