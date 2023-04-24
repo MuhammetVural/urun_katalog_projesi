@@ -144,7 +144,7 @@ class BookDetailPage extends ConsumerWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20.h),
                       child: ElevatedButton(
                           onPressed: () {
-                            router.push(HomaRoute());
+                            //router.push(HomeRoute(loginModel: ));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

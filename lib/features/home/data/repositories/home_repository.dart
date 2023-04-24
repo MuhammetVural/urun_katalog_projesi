@@ -8,7 +8,10 @@ abstract class HomeRepository {
   Future<List<CategoryModel>> getCategories();
 }
 
+
 @LazySingleton(as: HomeRepository)
+
+
 class HomeRepositoryImp implements HomeRepository {
   final NetworkManager _networkManager;
 

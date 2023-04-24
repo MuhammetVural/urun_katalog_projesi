@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/categorydetail/presentation/pages/category_detail_page.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
+import 'package:urun_katalog_projesi/features/login/data/models/login_model.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/controller/simple_ui_controller.dart';
 import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
@@ -29,9 +30,10 @@ final productProvider =
 );
 
 @RoutePage()
-class HomaPage extends ConsumerWidget {
-  HomaPage({super.key});
-  late TabController tabController;
+class HomePage extends ConsumerWidget {
+  HomePage({super.key,});
+  //HomePage({super.key, required this.loginModel});
+  //LoginModel loginModel;
   SimpleUiController simpleUiController = Get.put(SimpleUiController());
 
   final TextEditingController _searchController = TextEditingController();
@@ -160,7 +162,7 @@ class HomaPage extends ConsumerWidget {
                               padding: EdgeInsets.only(right: 10.w),
                               child: TextButton(
                                 onPressed: () {
-                                  router.push(HomaRoute());
+                                //  router.push(HomeRoute(loginModel: null));
                                 },
                                 child: Text(
                                   'View All',
@@ -261,8 +263,8 @@ class HomaPage extends ConsumerWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.w),
-                  child: const Text(
-                    'Best Seller',
+                  child: Text('',
+                   // loginModel.email,
                     style: TextStyle(
                         fontWeight: FontWeight.w600, fontSize: FontSize.s20),
                   ),
@@ -271,10 +273,10 @@ class HomaPage extends ConsumerWidget {
                   padding: EdgeInsets.only(right: 10.w),
                   child: TextButton(
                     onPressed: () {
-                      router.push(HomaRoute());
+                     // router.push(HomeRoute(loginModel: null));
                     },
-                    child: Text(
-                      'View All',
+                    child: Text('',
+                    //  loginModel.token,
                       style: TextStyle(
                           color: ColorManager.orangeButtonColor,
                           fontWeight: FontWeight.w500),

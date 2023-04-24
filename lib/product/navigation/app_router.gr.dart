@@ -24,12 +24,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    HomaRoute.name: (routeData) {
+    HomeRoute.name: (routeData) {
       final args =
-          routeData.argsAs<HomaRouteArgs>(orElse: () => const HomaRouteArgs());
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: HomaPage(key: args.key),
+        child: HomePage(key: args.key),
       );
     },
     LoginRoute.name: (routeData) {
@@ -102,30 +102,30 @@ class CategoryDetailRouteArgs {
 }
 
 /// generated route for
-/// [HomaPage]
-class HomaRoute extends PageRouteInfo<HomaRouteArgs> {
-  HomaRoute({
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          HomaRoute.name,
-          args: HomaRouteArgs(key: key),
+          HomeRoute.name,
+          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
-  static const String name = 'HomaRoute';
+  static const String name = 'HomeRoute';
 
-  static const PageInfo<HomaRouteArgs> page = PageInfo<HomaRouteArgs>(name);
+  static const PageInfo<HomeRouteArgs> page = PageInfo<HomeRouteArgs>(name);
 }
 
-class HomaRouteArgs {
-  const HomaRouteArgs({this.key});
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
 
   final Key? key;
 
   @override
   String toString() {
-    return 'HomaRouteArgs{key: $key}';
+    return 'HomeRouteArgs{key: $key}';
   }
 }
 
