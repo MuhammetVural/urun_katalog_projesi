@@ -125,7 +125,7 @@ class CategoryDetailPage extends ConsumerWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => BookDetailPage(
-                                          getIndex1: subIndex,
+                                          book: state2.products[subIndex],
                                         )));
                           },
                           child: Column(

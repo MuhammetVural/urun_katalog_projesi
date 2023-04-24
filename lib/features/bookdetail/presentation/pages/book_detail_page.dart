@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
+import 'package:urun_katalog_projesi/features/home/data/models/product_model.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/controller/simple_ui_controller.dart';
@@ -31,8 +32,8 @@ final productProvider =
 
 @RoutePage()
 class BookDetailPage extends ConsumerWidget {
-  BookDetailPage({super.key, required this.getIndex1});
-  int getIndex1;
+  BookDetailPage( {super.key,required this.book});
+  final ProductModel book;
 
   SimpleUiController simpleUiController = Get.put(SimpleUiController());
 
@@ -84,14 +85,14 @@ class BookDetailPage extends ConsumerWidget {
                           width: 150.h,
                           child: Image(
                             image:
-                                NetworkImage(state2.products[getIndex1].cover),
+                                NetworkImage(book.cover),
                           ),
                         ),
                         SizedBox(
                           height: 20.h,
                         ),
                         Text(
-                          state2.products[getIndex1].name,
+                         book.name,
                           style: TextStyle(
                               fontSize: 20.sp, fontWeight: FontWeight.w500),
                         ),
@@ -99,7 +100,7 @@ class BookDetailPage extends ConsumerWidget {
                           height: 10.h,
                         ),
                         Text(
-                          state2.products[getIndex1].author,
+                         book.author,
                           style: TextStyle(
                               fontSize: 16.sp,
                               color: ColorManager.grey1.withOpacity(0.7)),
@@ -126,7 +127,7 @@ class BookDetailPage extends ConsumerWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Text(
-                      state2.products[getIndex1].description,
+                     book.description,
                       style: TextStyle(
                           fontSize: 16.sp,
                           color: ColorManager.grey1.withOpacity(0.7),
@@ -149,7 +150,7 @@ class BookDetailPage extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${state2.products[getIndex1].price} \$',
+                                '${book.price} \$',
                                 style: TextStyle(
                                     color: ColorManager.white,
                                     fontWeight: FontWeight.w900,
