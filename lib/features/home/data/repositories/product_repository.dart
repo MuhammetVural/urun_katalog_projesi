@@ -5,7 +5,7 @@ import '../../../../core/network_manager/network_manager.dart';
 import '../models/product_model.dart';
 
 abstract class ProductRepository {
-  Future<List<ProductModel>> getCategories();
+  Future<List<ProductModel>> getCategories(int id);
 }
 
 @LazySingleton(as: ProductRepository)
@@ -15,9 +15,9 @@ class HomeRepositoryImp implements ProductRepository {
   HomeRepositoryImp({required NetworkManager networkManager})
       : _networkManager = networkManager;
   @override
-  Future<List<ProductModel>> getCategories() async {
+  Future<List<ProductModel>> getCategories(int id) async {
     try {
-      Response response = await _networkManager.get(path: "products/1");
+      Response response = await _networkManager.get(path: "products/${id+1}");
       return response.data["product"]
           .map<ProductModel>((e) => ProductModel.fromJson(e))
           .toList();

@@ -14,9 +14,13 @@ class ProductProvider extends AutoDisposeNotifier<ProductState> {
     return state;
   }
 
-  Future<void> getAllProducts() async {
-    state = ProductState.initial();
-    state = state.copyWith(
-        products: await _repository2.getCategories(), isLoading: false);
+  Future<void> getAllProducts(int count ) async {
+    for (var i = 0; i < count; i++){
+state = ProductState.initial();
+ state = state.copyWith(
+        products: await _repository2.getCategories(i), isLoading: false);
+    }
+    
+   
   }
 }

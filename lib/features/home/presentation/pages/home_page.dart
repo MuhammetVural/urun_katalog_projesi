@@ -256,36 +256,6 @@ class HomaPage extends ConsumerWidget {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w),
-                  child: const Text(
-                    'Best Seller',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: FontSize.s20),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 10.w),
-                  child: TextButton(
-                    onPressed: () {
-                      router.push(HomaRoute());
-                    },
-                    child: Text(
-                      'View All',
-                      style: TextStyle(
-                          color: ColorManager.orangeButtonColor,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
           ],
         ));
   }
