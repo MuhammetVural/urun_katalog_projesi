@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
@@ -34,7 +33,7 @@ class BookDetailPage extends ConsumerWidget {
   BookDetailPage({super.key, required this.getIndex1});
   int getIndex1;
 
-  SimpleUiController simpleUiController = Get.put(SimpleUiController());
+  
 
   final TextEditingController _searchController = TextEditingController();
 

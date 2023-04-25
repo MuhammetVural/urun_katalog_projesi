@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/bookdetail/presentation/pages/book_detail_page.dart';
 import 'package:urun_katalog_projesi/features/home/data/models/category_model.dart';
@@ -34,7 +34,7 @@ final productProvider =
 class CategoryDetailPage extends ConsumerWidget {
   CategoryDetailPage({super.key, required this.getIndex});
   int getIndex;
-  SimpleUiController simpleUiController = Get.put(SimpleUiController());
+ 
 
   final TextEditingController _searchController = TextEditingController();
 

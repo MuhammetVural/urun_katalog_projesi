@@ -21,11 +21,11 @@ class AppRouter extends _$AppRouter {
       page: SplashRoute.page,
       path: '/sp',
     ),
-    AutoRoute(page: LoginRoute.page, path: '/login'),
+    AutoRoute(page: LoginRoute.page, path: '/'),
     AutoRoute(page: RegisterRoute.page, path: '/register'),
     AutoRoute(
       page: HomeRoute.page,
-      path: '/',
+      path: '/home',
     ),
     AutoRoute(page: CategoryDetailRoute.page, path: '/category'),
     AutoRoute(page: BookDetailRoute.page, path: '/book'),

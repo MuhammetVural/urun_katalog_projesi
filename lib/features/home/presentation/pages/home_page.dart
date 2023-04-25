@@ -2,7 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:urun_katalog_projesi/features/categorydetail/presentation/pages/category_detail_page.dart';
 import 'package:urun_katalog_projesi/features/home/data/repositories/home_repository.dart';
@@ -31,10 +31,10 @@ final productProvider =
 
 @RoutePage()
 class HomePage extends ConsumerWidget {
-  HomePage({super.key,});
-  //HomePage({super.key, required this.loginModel});
-  //LoginModel loginModel;
-  SimpleUiController simpleUiController = Get.put(SimpleUiController());
+  //HomePage({super.key,});
+  HomePage({super.key, required this.token});
+  String token;
+  //SimpleUiController simpleUiController = Get.put(SimpleUiController());
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -70,40 +70,40 @@ class HomePage extends ConsumerWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               height: 60.h,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: state.categories.length,
-                  itemBuilder: ((context, index) {
-                    return Obx(
-                      () => GestureDetector(
-                        onTap: () {
-                          simpleUiController.selectedIndex.value = index;
-                        },
-                        child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: index ==
-                                        simpleUiController.selectedIndex.value
-                                    ? ColorManager.textAndButtonPurple
-                                    : ColorManager.textFieldGreyBackround),
-                            margin: const EdgeInsets.all(10),
-                            child: Center(
-                              child: Text(
-                                state.categories[index].name,
-                                style: TextStyle(
-                                  color: index ==
-                                          simpleUiController.selectedIndex.value
-                                      ? ColorManager.white
-                                      : Colors.grey.withOpacity(0.7),
-                                ),
-                              ),
-                            )),
-                      ),
-                    );
-                  })),
-            ),
+            //   child: ListView.builder(
+            //       scrollDirection: Axis.horizontal,
+            //       shrinkWrap: true,
+            //       itemCount: state.categories.length,
+            //       itemBuilder: ((context, index) {
+            //         return Obx(
+            //           () => GestureDetector(
+            //             onTap: () {
+            //               simpleUiController.selectedIndex.value = index;
+            //             },
+            //             child: Container(
+            //                 padding: const EdgeInsets.all(10),
+            //                 decoration: BoxDecoration(
+            //                     borderRadius: BorderRadius.circular(4),
+            //                     color: index ==
+            //                             simpleUiController.selectedIndex.value
+            //                         ? ColorManager.textAndButtonPurple
+            //                         : ColorManager.textFieldGreyBackround),
+            //                 margin: const EdgeInsets.all(10),
+            //                 child: Center(
+            //                   child: Text(
+            //                     state.categories[index].name,
+            //                     style: TextStyle(
+            //                       color: index ==
+            //                               simpleUiController.selectedIndex.value
+            //                           ? ColorManager.white
+            //                           : Colors.grey.withOpacity(0.7),
+            //                     ),
+            //                   ),
+            //                 )),
+            //           ),
+            //         );
+            //       })),
+             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               child: TextField(
@@ -162,7 +162,7 @@ class HomePage extends ConsumerWidget {
                               padding: EdgeInsets.only(right: 10.w),
                               child: TextButton(
                                 onPressed: () {
-                                //  router.push(HomeRoute(loginModel: null));
+                                  //  router.push(HomeRoute(loginModel: null));
                                 },
                                 child: Text(
                                   'View All',
@@ -263,8 +263,9 @@ class HomePage extends ConsumerWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.w),
-                  child: Text('',
-                   // loginModel.email,
+                  child: Text(
+                    '',
+                    // loginModel.email,
                     style: TextStyle(
                         fontWeight: FontWeight.w600, fontSize: FontSize.s20),
                   ),
@@ -273,10 +274,11 @@ class HomePage extends ConsumerWidget {
                   padding: EdgeInsets.only(right: 10.w),
                   child: TextButton(
                     onPressed: () {
-                     // router.push(HomeRoute(loginModel: null));
+                      // router.push(HomeRoute(loginModel: null));
                     },
-                    child: Text('',
-                    //  loginModel.token,
+                    child: Text(
+                      '',
+                      //  loginModel.token,
                       style: TextStyle(
                           color: ColorManager.orangeButtonColor,
                           fontWeight: FontWeight.w500),

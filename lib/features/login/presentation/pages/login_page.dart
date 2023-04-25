@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:urun_katalog_projesi/core/network_manager/network_manager.dart';
 import 'package:urun_katalog_projesi/features/home/presentation/pages/home_page.dart';
 import 'package:urun_katalog_projesi/features/login/data/models/login_model.dart';
 import 'package:urun_katalog_projesi/features/login/data/repositories/login_repository.dart';
@@ -8,6 +9,7 @@ import 'package:urun_katalog_projesi/gen/assets.gen.dart';
 import 'package:urun_katalog_projesi/product/components/color_manager.dart';
 import 'package:urun_katalog_projesi/product/components/font_manager.dart';
 import 'package:urun_katalog_projesi/product/components/reuseable_widgets.dart';
+import 'package:urun_katalog_projesi/product/locator/locator.dart';
 import 'package:urun_katalog_projesi/product/navigation/app_router.dart';
 
 import '../../../../main.dart';
@@ -23,9 +25,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
-  final LoginRepository _loginService = LoginRepositoryImp();
+
+  final LoginRepository _loginService = LoginRepositoryImp(service: getIt<NetworkManager>());
+  late String? token;
+
+  @override
+  void dispose() {
+    _emailTextController.dispose();
+    _passwordTextController.dispose();
+    // ignore: avoid_print
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool? isChecked = false;
@@ -125,13 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: true
                         ? TextInputType.visiblePassword
                         : TextInputType.emailAddress,
-                    onEditingComplete: () async {
-                      LoginModel response = await _loginService.getLogin(
-                          _emailTextController.text,
-                          _passwordTextController.text);
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //     builder: (_) => HomePage(loginModel: response),));
-                    },
+                    
                   )),
               SizedBox(
                 height: 5.h,
@@ -184,8 +192,18 @@ class _LoginPageState extends State<LoginPage> {
                 height: 60.h,
                 padding: EdgeInsets.symmetric(horizontal: 20.h),
                 child: ElevatedButton(
-                    onPressed: () {
-                      //  router.push(HomeRoute(loginModel: null));
+                    onPressed: () async {
+                      await loginButtonPressed();
+                      if (token!.isEmpty || token == null) {
+                        // ignore: use_build_context_synchronously
+                        await showDialogBox(context);
+                      } else {
+                        
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => HomePage(token: token!)),
+                            (route) => route.isFirst);
+                      }
                     },
                     child: const Text('Login')),
               ),
@@ -194,5 +212,26 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+    Future<dynamic> showDialogBox(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+        title: Text("Error"),
+        contentPadding: EdgeInsets.all(20),
+      ),
+    );
+  }
+
+    Future<void> loginButtonPressed() {
+    return loginButton(
+      _emailTextController.text.trim(),
+      _passwordTextController.text.trim(),
+    );
+  }
+
+    Future<void> loginButton(String email, String password) async {
+    token = await _loginService.getLogin(email, password);
   }
 }
