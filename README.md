@@ -11,4 +11,4 @@ Piton Teknoloji Şirketine Giriş Assignment'ı
 
 ![Simulator Screen Shot - iphone 14 pro - 2023-04-27 at 17 00 01]( | width=200)
 
-<img src="[https://your-image-url.type](https://user-images.githubusercontent.com/73459364/234885638-e9e948b8-b8d3-49e3-b6ba-6adec4438909.png)" width="200">
+
